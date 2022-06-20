@@ -35,6 +35,14 @@ class Home extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Post(user: currentUser),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+            sliver: SliverToBoxAdapter(
+              child: Room(
+                onlineUsers: onlineUsers,
+              ),
+            ),
           )
         ],
       ),
