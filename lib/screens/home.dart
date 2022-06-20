@@ -1,3 +1,4 @@
+import 'package:facebook_clone/data/data.dart';
 import 'package:facebook_clone/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:facebook_clone/widgets/widgets.dart';
@@ -31,6 +32,9 @@ class Home extends StatelessWidget {
                   icon: MdiIcons.facebookMessenger,
                   iconSize: 30),
             ],
+          ),
+          SliverToBoxAdapter(
+            child: Post(user: currentUser),
           )
         ],
       ),
