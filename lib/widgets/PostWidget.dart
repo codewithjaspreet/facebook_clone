@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../models/user_model.dart';
 
-class Post extends StatelessWidget {
-  Post({required this.user});
+class PostWidget extends StatelessWidget {
+  PostWidget({required this.user});
 
   final User user;
   @override

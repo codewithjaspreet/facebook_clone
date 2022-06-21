@@ -3,6 +3,8 @@ import 'package:facebook_clone/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:facebook_clone/widgets/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import '../widgets/PostContainer.dart';
+import 'package:facebook_clone/models/models.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -34,7 +36,7 @@ class Home extends StatelessWidget {
             ],
           ),
           SliverToBoxAdapter(
-            child: Post(user: currentUser),
+            child: PostWidget(user: currentUser),
           ),
           SliverPadding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
@@ -51,6 +53,15 @@ class Home extends StatelessWidget {
                 currentUser: currentUser,
                 stories: stories,
               ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final Post post = posts[index];
+                return PostContainer(post: post);
+              },
+              childCount: posts.length,
             ),
           ),
         ],
