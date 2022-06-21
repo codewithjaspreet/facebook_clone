@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Palette.scaffold,
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      home: NavScreen(),
     );
   }
 }
