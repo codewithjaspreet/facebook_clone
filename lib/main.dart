@@ -2,14 +2,17 @@ import 'package:facebook_clone/palette.dart';
 import 'package:facebook_clone/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'screens/screens.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
+  final Future<FirebaseApp> firebaseInitial = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +23,18 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Palette.scaffold,
         primarySwatch: Colors.blue,
       ),
-      home: NavScreen(),
+      home: FutureBuilder(
+        future: firebaseInitial,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print('error');
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            return NavScreen();
+          }
+          return const CircularProgressIndicator();
+        },
+      ),
     );
   }
 }
