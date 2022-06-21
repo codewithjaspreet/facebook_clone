@@ -1,4 +1,5 @@
 import 'package:facebook_clone/palette.dart';
+import 'package:facebook_clone/widgets/responsive.dart';
 import 'package:facebook_clone/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:facebook_clone/models/models.dart';
@@ -9,33 +10,42 @@ class Room extends StatelessWidget {
   final List onlineUsers;
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 60,
-        color: Colors.white,
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 4),
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == 0) {
+    final bool isDeskTop = Responsive.isDeskTop(context);
+
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: isDeskTop ? 5 : 0),
+      elevation: isDeskTop ? 1 : 0,
+      shape: isDeskTop
+          ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+          : null,
+      child: Container(
+          height: 60,
+          color: Colors.white,
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              if (index == 0) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: _CreateRoomButoon(),
+                );
+              }
+              ;
+              final User user = onlineUsers[index - 1];
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: _CreateRoomButoon(),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
+                child: ProfileAvatar(
+                  imageUrl: user.imageUrl,
+                  isActive: true,
+                ),
               );
-            }
-            ;
-            final User user = onlineUsers[index - 1];
-            return Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ),
-              child: ProfileAvatar(
-                imageUrl: user.imageUrl,
-                isActive: true,
-              ),
-            );
-          },
-          itemCount: 1 + onlineUsers.length,
-        ));
+            },
+            itemCount: 1 + onlineUsers.length,
+          )),
+    );
   }
 }
 
