@@ -1,6 +1,16 @@
 # facebook_clone
 
-Responsive Facebook Ui cloned for mobile & flutter web
+Responsive Facebook Ui cloned for mobile & flutter web - Use of Layout Builder Widget to apply styles for different screens
+
+Web SnapShot -> 
+
+![Screenshot 2022-06-22 at 08-59-52 Facebook Clone](https://user-images.githubusercontent.com/85099922/174939075-52c267d0-f638-4d22-a2a5-f3cdc1441ae9.png)
+
+
+Mobile Snapshot ->
+
+![ss](https://user-images.githubusercontent.com/85099922/174940765-525e882c-1232-441d-9508-f05089904d44.png)
+
 
 ## Getting Started
 
